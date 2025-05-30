@@ -54,13 +54,15 @@ btnBuscar.addEventListener("click", async (event) => {
     event.preventDefault();
     const valorInput = buscador.value
 
-    const reultado = cargarDatos(`https://dragonball-api.com/api/characters?name=${valorInput}`)
-    console.log(cargarDatos);
 
-    cargarDatos.forEach((personaje) => {
-    // console.log(personaje);
+    console.log(valorInput);
+
+    const data = await cargarDatos(`https://dragonball-api.com/api/characters?name=${valorInput}`)
+    console.log(data);
+    contenedorpadre.innerHTML = ""
+    data.forEach((personaje) => {
     contenedorpadre.innerHTML += `
-          <div class="col-3 pb-2 d-flex justify-content-center" data-id=${personaje.id}>
+    <div class="col-3 pb-2 d-flex justify-content-center" data-id=${personaje.id}>
             <div class="card">
               <img
                 class="card-img-top"
@@ -73,9 +75,9 @@ btnBuscar.addEventListener("click", async (event) => {
               </div>
             </div>
           </div>
-      `;
-  });
-});
+        `; 
+    });
+})
 
 
 
