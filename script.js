@@ -2,6 +2,7 @@ const urlDragonBall = "https://dragonball-api.com/api/characters";
 const contenedorpadre = document.getElementById("contenedor-data");
 const btnBuscar = document.getElementById("bttn");
 const buscador = document.getElementById("buscador");
+const limpiar = document.getElementById("limpia");
 
 const cargarDatos = async (url) => {
     try {
@@ -59,6 +60,7 @@ btnBuscar.addEventListener("click", async (event) => {
 
     const data = await cargarDatos(`https://dragonball-api.com/api/characters?name=${valorInput}`)
     console.log(data);
+    // esto hace que los elementos del contenedorpadre.innehtml la carga de nada por 
     contenedorpadre.innerHTML = ""
     data.forEach((personaje) => {
     contenedorpadre.innerHTML += `
@@ -79,7 +81,9 @@ btnBuscar.addEventListener("click", async (event) => {
     });
 })
 
-
+limpiar.addEventListener("click", async () => {
+  contenedorpadre.innerHTML = ""
+});
 
 contenedorpadre.addEventListener("click", (e) => {
   if (e.target.classList.contains("btn-ver-detalles")) {
